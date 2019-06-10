@@ -15,7 +15,7 @@
   </target>
   
   <target name="jar" depends="compile" unless="skip.jar">
-    <jar file="build/hello.jar">
+    <jar file="build/hello.ear">
       <fileset dir="build/classes"/>
     </jar>
   </target>
@@ -35,7 +35,7 @@
     <jacoco:coverage enabled="${jacoco}" destfile="build/jacoco.exec">
       <junit printsummary="yes" haltonfailure="yes" fork="true" forkmode="once">
         <classpath>
-          <fileset dir="lib" includes="*.jar" />
+          <fileset dir="lib" includes="*.ear" />
           <pathelement path="build/classes" />
           <pathelement path="build/test-classes" />
         </classpath>
@@ -53,12 +53,12 @@
   <target name="findbugs" depends="jar">
     <taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask">
       <classpath>
-        <fileset dir="lib/findbugs/lib" includes="*.jar"/>
+        <fileset dir="lib/findbugs/lib" includes="*.ear"/>
       </classpath>
     </taskdef>
     <findbugs home="lib/findbugs" output="xml" outputFile="build/findbugs.xml">
       <sourcePath path="src"/>
-      <class location="build/hello.jar"/>
+      <class location="build/hello.ear"/>
     </findbugs>
   </target>
 
